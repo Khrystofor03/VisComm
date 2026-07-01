@@ -6,11 +6,11 @@
 
 Rather than focusing on charts, software or visualization libraries alone, VisComm explores the complete design process behind effective visual communication with data. It connects perception, information design, storytelling and modern visualization technologies into a coherent approach applicable across different domains—from business intelligence and dashboards to scientific visualization, education and data journalism.
 
-## Audience- and Purpose-Driven Data Visualization
+## Audience- and Purpose-Driven Visualization (APDV)
 
 *An authorial approach currently being developed within the VisComm project.*
 
-**Audience- and Purpose-Driven Data Visualization (APDV)** is an authorial approach to designing data visualizations that places the **audience** and the **purpose of communication** at the beginning of the design process.
+**Audience- and Purpose-Driven Visualization (APDV)** is an authorial approach to designing data visualizations that places the **audience** and the **purpose of communication** at the beginning of the design process.
 
 Instead of starting with the data, chart type or visualization technology, the process begins by answering three fundamental questions:
 
