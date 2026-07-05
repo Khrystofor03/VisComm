@@ -76,4 +76,4 @@ When exactly did the extreme temperature peaks (>25°C) occur, and what were the
 
 *How will you know the visualization works?*
 
-A viewer (including individuals with red-green color blindness) sitting at the back of Room 212 can accurately identify the hottest hours and the corresponding weather conditions within 3 seconds, without needing to strain their eyes or read tiny axis labels.
+A viewer (including individuals with red-green color blindness) sitting at the back of conference room can accurately identify the hottest hours and the corresponding weather conditions within 3 seconds, without needing to strain their eyes or read tiny axis labels.
