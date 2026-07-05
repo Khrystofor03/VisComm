@@ -39,7 +39,7 @@ Where will the visualization be used?
 - [ ] Poster
 - [ ] Other
 
-*Note: The presentation will take place on a projector screen in Room 212. This requires high contrast, thick lines, and large fonts (sans-serif) for readability from a distance.*
+*Note: The presentation will take place on a projector screen in Conference Room in Katowice. This requires high contrast, thick lines, and large fonts (sans-serif) for readability from a distance.*
 
 ---
 
