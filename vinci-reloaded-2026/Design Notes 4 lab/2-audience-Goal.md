@@ -10,7 +10,7 @@
 
 ## Primary audience
 
-* Students, instructors, and the jury of the Vinci RELOADED Summer School 2026.
+* Students, instructors, and the expert jury of the Vinci RELOADED Summer School 2026.
 
 ---
 
@@ -18,11 +18,11 @@
 
 What do they already know?
 
-* They are physically present in Katowice, so they have a subjective feeling of the local summer weather. They also understand basic statistics and data visualization principles.
+* Since they are physically present in Katowice, they have a subjective, firsthand experience of the local June weather. As academic peers and instructors, they also possess a solid understanding of basic statistics and data visualization principles.
 
 What do they probably not know?
 
-* They do not know the exact hourly distribution of temperatures, the precise timing of the extreme heat spikes (up to 36°C), and the statistical correlation between these temperature extremes and the cloud cover (e.g., whether the hottest hours were strictly during clear skies).
+* They are unaware of the hidden meteorological mechanics that actually *triggered* the extreme 36°C heatwave. They likely assume the heat was just a normal summer progression, not knowing that it was a complex anomaly "imported" by rare Southern winds and triggered by a massive high-pressure blocking dome that dried out the air.
 
 ---
 
@@ -39,7 +39,7 @@ Where will the visualization be used?
 - [ ] Poster
 - [ ] Other
 
-*Note: The presentation will take place on a projector screen in conference room in Katowice. This requires high contrast, thick lines, and large fonts (sans-serif) for readability from a distance.*
+*Note: The pitch will take place on a large projector screen in a conference room in Katowice. This strict medium constraint requires high contrast, thick lines, large sans-serif typography, and a massive reduction of visual noise (chartjunk) for immediate readability from a distance.*
 
 ---
 
@@ -60,7 +60,7 @@ Where will the visualization be used?
 
 *After 30 seconds the audience should remember...*
 
-Katowice experienced severe and rapid temperature fluctuations in June 2026. The extreme heat peaks occurred during specific hours under clear skies, heavily contrasting with the cooler, cloudier periods.
+The record-breaking heatwave in Katowice at the end of June 2026 was not a random fluctuation, but a perfectly aligned meteorological anomaly. It was driven by a massive high-pressure system that cleared the skies, allowing rare but scorching Southern winds to act as a thermal pump, importing extreme heat into the region.
 
 ---
 
@@ -68,7 +68,7 @@ Katowice experienced severe and rapid temperature fluctuations in June 2026. The
 
 *The visualization should answer...*
 
-When exactly did the extreme temperature peaks (>25°C) occur, and what were the sky conditions (cloud cover) during those specific heatwaves?
+What specific synoptic forces (wind direction, atmospheric pressure, and cloud cover) combined to trigger the extreme temperature records in Katowice?
 
 ---
 
@@ -76,4 +76,6 @@ When exactly did the extreme temperature peaks (>25°C) occur, and what were the
 
 *How will you know the visualization works?*
 
-A viewer (including individuals with red-green color blindness) sitting at the back of conference room can accurately identify the hottest hours and the corresponding weather conditions within 3 seconds, without needing to strain their eyes or read tiny axis labels.
+A viewer (including individuals with color vision deficiencies like deuteranopia) sitting at the very back of the Katowice conference room can accurately and instantly (within 3 seconds) recognize two things:
+1. The exact chronology of when the pressure built up and the heatwave struck.
+2. The geographical origin of the heat (identifying Southern winds as the source of extreme temperatures via the Wind Rose), without needing to read tiny axis labels or complex legends.
