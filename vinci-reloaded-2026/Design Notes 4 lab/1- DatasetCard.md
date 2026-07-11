@@ -28,13 +28,13 @@ https://meteostat.net/en/station/12560?t=2026-06-01/2026-06-30
 
 # Description
 
-This dataset contains hourly meteorological observations for Katowice, Poland, covering the entire month of June 2026 (720 records in total). It includes multiple environmental variables such as air temperature, relative humidity, precipitation, wind speed, and specific weather condition codes.
+This dataset contains hourly meteorological observations for Katowice, Poland, covering the entire month of June 2026 (720 records in total). It captures complex environmental variables including air temperature, relative humidity, atmospheric pressure, wind dynamics, and specific weather condition codes, providing a comprehensive picture of summer climate anomalies.
 
 ---
 
 # Observations
 
-One row represents the exact weather conditions recorded during one specific hour (e.g., 2026-06-01 14:00:00) at the Katowice weather station.
+One row represents the exact meteorological conditions recorded during one specific hour (e.g., 2026-06-01 14:00:00) at the Katowice weather station.
 
 ---
 
@@ -61,30 +61,38 @@ One row represents the exact weather conditions recorded during one specific hou
 
 ## Missing values
 
-* The dataset contains a significant amount of missing values (NA / empty fields) in specific columns, particularly `snow` and `tsun` (sunshine duration), which seem to be unrecorded for most hours in June.
+* The dataset contains a significant amount of missing values (NA / empty fields) in specific columns, particularly `snow` and `tsun` (sunshine duration), which are mostly unrecorded or irrelevant for June. These columns will be excluded from the analysis.
 
 ## Outliers
 
-* Temperature (`temp`) reaches extreme peaks (up to 36°C), which is unusually hot but realistic for summer heatwaves in Central Europe.
+* Air temperature (`temp`) shows extreme, highly asymmetric positive outliers, reaching peaks up to 36°C in the last week of the month. 
 
 ## Potential bias
 
-* The data relies on a single specific station (Katowice / Muchowiec, usually located near the airport or urban border). This might include an "urban heat island" effect, meaning the temperatures might be slightly higher than in the surrounding rural areas.
+* The data relies on a single specific station (Katowice / Muchowiec, usually located near the airport/urban border). This may introduce an "urban heat island" bias, meaning recorded temperatures might be slightly higher and less volatile than in the surrounding rural Silesian areas.
 
-## Other issues
+## Other issues & Engineering Needs
 
-* **Artificial Ordering Trap:** The `coco` (weather condition) variable is originally stored as numerical data (1 to 27). It must be explicitly converted to categorical factors during data preparation to prevent algorithms from calculating meaningless statistics (like "average weather condition = 3.5").
+* **Artificial Ordering Trap:** The `coco` (weather condition) variable is originally stored as numerical data (1 to 27). It must be explicitly converted to categorical factors ("Clear", "Rain", etc.) to prevent algorithms from calculating meaningless statistics.
+* **Continuous to Categorical Transformation:** The wind direction (`wdir`) is provided in continuous degrees (0-360). For meaningful radial visualization (Wind Rose), it must be engineered into categorical compass directions (N, NE, E, SE, S, SW, W, NW).
 
 ---
 
 # Initial observations
 
-* Based on the initial exploratory data analysis (EDA), Katowice experienced highly variable temperatures in June 2026, ranging from a chilly 6°C to a scorching 36°C.
-* The most frequent temperatures recorded were surprisingly mild (13°C - 15°C).
-* According to the weather condition codes (`coco`), the dominant state of the sky was "Fair" (288 hours) and "Cloudy" (158 hours), meaning clear skies or light clouds dominated the month, though there were also 50 hours of light rain.
+Following an extensive Exploratory Data Analysis (EDA), our initial assumptions have evolved into a much deeper meteorological narrative:
+
+* **The Heatwave Anomaly:** Katowice experienced a severe heatwave in the final week of June 2026. While the median temperature was a comfortable 18°C, the late-month peaks shattered the 35°C mark.
+* **Correlations:** There is a massive negative correlation (-0.83) between Temperature and Relative Humidity (`rhum`), meaning the extreme heat was dry, not tropical.
+* **Pressure as a Leading Indicator:** Time-series analysis reveals that the heatwave was directly preceded by a massive build-up of atmospheric pressure (`pres`), stabilizing over 1020 hPa (a blocking anticyclone) which cleared the skies.
+* **The Origin of Heat:** The Wind Rose radial analysis uncovered a critical insight. While Katowice is predominantly cooled by Westerly (W) and South-Westerly (SW) winds (averaging ~16°C), the extreme heat was "imported." Rare, but intense Southerly (S) and South-Easterly (SE) winds brought blistering thermal masses averaging 20-22°C even during non-peak hours.
+* **Cloud Cover Effect:** Ridgeline distributions prove that extreme temperature spikes (>30°C) occurred *exclusively* under "Clear" and "Fair" sky conditions (`coco`).
 
 ---
 
 # Notes
 
-* Before creating the final visualization, the dataset should be simplified (decluttered) by dropping unused columns like `wdir`, `pres`, and `dwpt` to maximize the data-ink ratio and focus purely on the relationship between time, temperature, and cloud cover.
+* **Design Strategy Shift:** Initially, the plan was to declutter the dataset by dropping `wdir` and `pres`. However, EDA proved these variables are the fundamental physical drivers of the temperature spikes. They have been upgraded to **High Importance**. 
+* The final presentation will focus on **"The Anatomy of a Heatwave"**, utilizing a dual-chart storytelling approach:
+  1. A chronological timeline linking the pressure build-up and clear skies to the severe temperature spikes.
+  2. A radial "Wind & Heat Rose" to visually explain the geographical origin of the extreme heat to the audience.
