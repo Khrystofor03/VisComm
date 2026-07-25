@@ -1,0 +1,53 @@
+# R / RStudio
+.Rhistory
+.RData
+.Ruserdata
+.Rproj.user/
+
+# R temporary files
+.Rapp.history
+.Renviron
+
+# knitr / R Markdown cache
+*_cache/
+*_files/
+.cache/
+figure/
+figure-html/
+figure-latex/
+
+# LaTeX compilation artefacts
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.lof
+*.log
+*.lot
+*.nav
+*.out
+*.run.xml
+*.snm
+*.synctex.gz
+*.toc
+*.vrb
+*.xdv
+
+# Pandoc / LaTeX temporary files
+*.utf8.md
+*.knit.md
+
+# Quarto
+.quarto/
+*_freeze/
+
+# Operating system
+.DS_Store
+Thumbs.db
+
+# Editor temporary files
+*~
+*.swp
+*.swo

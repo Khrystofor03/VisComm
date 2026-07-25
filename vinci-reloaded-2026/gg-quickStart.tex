@@ -1,0 +1,877 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+]{article}
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Data Visualisation - Vinci Reloaded 2026},
+  pdfauthor={Magdalena A. Tkacz},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Data Visualisation - Vinci Reloaded 2026}
+\usepackage{etoolbox}
+\makeatletter
+\providecommand{\subtitle}[1]{% add subtitle to \maketitle
+  \apptocmd{\@title}{\par {\large #1 \par}}{}{}
+}
+\makeatother
+\subtitle{Transforming Data Insights from Conceptual Design to
+Implementation}
+\author{Magdalena A. Tkacz}
+\date{}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{3}
+\tableofcontents
+}
+\section{The Visual Engineering
+Process}\label{the-visual-engineering-process}
+
+Before writing a single line of executable code, data visualization must
+be approached as a rigorous engineering discipline. The process is
+entirely \textbf{framework and tools agnostic}---implementation is
+simply the operationalization of a structured cognitive workflow:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Understand your data:} Continuously improve, iterate, and
+  build a deep mental model of your underlying metrics.
+\item
+  \textbf{Design with clarity:} Think deeply, decide deliberately, and
+  choose the correct visual representation for your audience.
+\item
+  \textbf{Encode with purpose:} Translate structural conceptual choices
+  into clean, layered graphics.
+\end{itemize}
+
+\begin{quote}
+\emph{Better decisions. Better charts. Stronger impact.}
+\end{quote}
+
+\section{Part 1: Technical Setup \& The Foundations of The Grammar of
+Graphics}\label{part-1-technical-setup-the-foundations-of-the-grammar-of-graphics}
+
+\subsection{1. Environmental Setup \& Reproducible
+Documents}\label{environmental-setup-reproducible-documents}
+
+In scientific research, we utilize markdown environments to weave
+together text, statistical calculations, and code chunks into clean,
+production-ready outputs. While we use R for our practical sessions, the
+architectural choices remain identical across any engineering pipeline.
+
+\subsubsection{Global Document
+Configuration}\label{global-document-configuration}
+
+We initialize our workshop environment by loading the necessary
+libraries, silencing scientific notation for clean axis formatting, and
+setting up a professional baseline theme.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{knitr}\SpecialCharTok{::}\NormalTok{opts\_chunk}\SpecialCharTok{$}\FunctionTok{set}\NormalTok{(}\AttributeTok{warning =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{message =} \ConstantTok{FALSE}\NormalTok{)}
+\CommentTok{\# Package installation if required:}
+\CommentTok{\# install.packages("ggplot2")}
+\CommentTok{\# install.packages("palmerpenguins")}
+\CommentTok{\# install.packages("forcats")}
+\CommentTok{\# install.packages("ggExtra")}
+\CommentTok{\# install.packages("RColorBrewer")}
+
+\FunctionTok{library}\NormalTok{(ggplot2)}
+\FunctionTok{library}\NormalTok{(palmerpenguins)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Dołączanie pakietu: 'palmerpenguins'
+\end{verbatim}
+
+\begin{verbatim}
+## Następujące obiekty zostały zakryte z 'package:datasets':
+## 
+##     penguins, penguins_raw
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(forcats)}
+\FunctionTok{library}\NormalTok{(ggExtra)}
+\FunctionTok{library}\NormalTok{(RColorBrewer)}
+
+\CommentTok{\# Disable scientific notation for clean axis rendering (e.g., 2000000 instead of 2e06)}
+\FunctionTok{options}\NormalTok{(}\AttributeTok{scipen =} \DecValTok{999}\NormalTok{)}
+
+\CommentTok{\# Set a crisp Black \& White theme as our global structural baseline default}
+\FunctionTok{theme\_set}\NormalTok{(}\FunctionTok{theme\_bw}\NormalTok{())}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{2. Theoretical Framework: The Grammar of
+Graphics}\label{theoretical-framework-the-grammar-of-graphics}
+
+The \textbf{Grammar of Graphics} is a formalized system of rules that
+describes how statistical graphics are systematically constructed.
+Instead of treating a chart as a static image, this engineering
+methodology views visualization as a language where layouts are
+engineered by stacking independent, overlapping functional layers.
+
+\subsubsection{Visual Pre-attentive
+Attributes}\label{visual-pre-attentive-attributes}
+
+Before the human brain consciously processes scales or numeric ranges,
+it automatically detects core visual attributes. By strategically
+mapping statistical variables to these pre-attentive cues, you instantly
+drive the reader's cognitive focus:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Form:} Length, width, sizing boundaries, and geometric shape
+  configurations.
+\item
+  \textbf{Color:} Hue (for category segregation) and intensity (for
+  continuous numeric distributions).
+\item
+  \textbf{Spatial Position:} 2D alignment across standard Cartesian
+  coordinate systems.
+\end{itemize}
+
+\subsubsection{Understanding Data Mapping as Structural
+Layers}\label{understanding-data-mapping-as-structural-layers}
+
+Every chart is built from the ground up by stacking specific component
+layers:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Data:} The raw data frame source containing your analytical
+  metrics.
+\item
+  \textbf{Aesthetics (\texttt{aes}):} The structural link mapping a data
+  variable to a visual property (e.g., X axis, Y axis, color, shape).
+\item
+  \textbf{Geometries (\texttt{geom}):} The concrete geometric shape used
+  to render data points (points, bars, lines, boxes, violins).
+\item
+  \textbf{Facets:} Structural parameters that split the canvas into
+  multiple sub-panels based on categorical variables.
+\item
+  \textbf{Statistics (\texttt{stat}):} Internal mathematical
+  transformations automatically computed before plotting (e.g., bin
+  counting for histograms, quantiles for boxplots).
+\item
+  \textbf{Coordinates:} The mapping space of the layout plane
+  (Cartesian, polar, or inverted scales).
+\item
+  \textbf{Themes:} Non-data visual variables that control layout
+  styling, text fonts, margins, gridlines, and canvas colors.
+\end{enumerate}
+
+\section{Part 2: Layered Visualization Mastery \& Live ggplot2
+Coding}\label{part-2-layered-visualization-mastery-live-ggplot2-coding}
+
+\subsection{1. Incremental Plot Building (The Layered
+Approach)}\label{incremental-plot-building-the-layered-approach}
+
+Charts in \texttt{ggplot2} are built iteratively using the base
+template:
+\texttt{ggplot(data\ =\ {[}dataset{]},\ mapping\ =\ aes({[}aesthetic\_maps{]}))\ +\ {[}geom\_functions{]}}.
+
+Let's explore how a chart transforms step-by-step using the
+\texttt{palmerpenguins} dataset.
+
+\subsubsection{Step 1: Connecting Data to the
+Canvas}\label{step-1-connecting-data-to-the-canvas}
+
+Initializing \texttt{ggplot()} establishes a data connection but renders
+an empty grey canvas because no spatial or aesthetic properties have
+been mapped.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Connects the dataset to the plotting engine}
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ penguins)}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{gg-quickStart_files/gg-quickStart_files/figure-latex/step1-1.pdf}}
+
+\subsubsection{Step 2: Mapping Aesthetic Axis
+Dimensions}\label{step-2-mapping-aesthetic-axis-dimensions}
+
+Declaring variables inside \texttt{aes()} maps the numerical columns to
+the visual X and Y coordinate scales. The canvas now shows structured
+gridlines and numeric ranges but displays no data points.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Establishes structural scales for X and Y coordinates}
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ penguins, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ bill\_depth\_mm, }\AttributeTok{y =}\NormalTok{ bill\_length\_mm))}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{gg-quickStart_files/gg-quickStart_files/figure-latex/step2-1.pdf}}
+
+\subsubsection{\texorpdfstring{Step 3: Declaring Geometries
+(\texttt{geom})}{Step 3: Declaring Geometries (geom)}}\label{step-3-declaring-geometries-geom}
+
+To project the data onto the canvas, we add a geometric layer. To
+inspect individual continuous data points, we append a scatter layer via
+\texttt{geom\_point()}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Renders raw data rows as visual points on the canvas}
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ penguins, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ bill\_depth\_mm, }\AttributeTok{y =}\NormalTok{ bill\_length\_mm)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{gg-quickStart_files/gg-quickStart_files/figure-latex/step3-1.pdf}}
+
+\subsubsection{Step 4: Multi-dimensional Coding (Color
+Mapping)}\label{step-4-multi-dimensional-coding-color-mapping}
+
+To encode an additional categorical variable without cluttering the
+coordinates, we map the \texttt{species} factor to the pre-attentive
+property \texttt{color} inside the aesthetic function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Dynamically encodes biological species using colors}
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ penguins,}
+       \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ bill\_depth\_mm,}
+           \AttributeTok{y =}\NormalTok{ bill\_length\_mm,}
+           \AttributeTok{col =}\NormalTok{ species)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{gg-quickStart_files/gg-quickStart_files/figure-latex/step4-1.pdf}}
+
+\subsubsection{Step 5: Professional Annotations and
+Labels}\label{step-5-professional-annotations-and-labels}
+
+Every scientific visualization requires clear titles, clean labels, and
+explicit measurement units.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ penguins,}
+       \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ bill\_depth\_mm,}
+           \AttributeTok{y =}\NormalTok{ bill\_length\_mm,}
+           \AttributeTok{col =}\NormalTok{ species)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Penguin Bill Morphometrics by Species"}\NormalTok{,}
+       \AttributeTok{x =} \StringTok{"Bill Depth [mm]"}\NormalTok{,}
+       \AttributeTok{y =} \StringTok{"Bill Length [mm]"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{gg-quickStart_files/gg-quickStart_files/figure-latex/step5-1.pdf}}
+
+\subsection{2. Advanced Object Manipulation, Trends, and Style
+Scales}\label{advanced-object-manipulation-trends-and-style-scales}
+
+A distinct feature of \texttt{ggplot2} is that an entire visualization
+can be saved as a variable object, allowing you to manipulate and expand
+it later.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Save our basic scatter configuration into a variable object}
+\NormalTok{viz }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ penguins,}
+              \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ bill\_depth\_mm,}
+                  \AttributeTok{y =}\NormalTok{ bill\_length\_mm,}
+                  \AttributeTok{col =}\NormalTok{ species)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Point Colors by Species"}\NormalTok{,}
+       \AttributeTok{x =} \StringTok{"Bill Depth [mm]"}\NormalTok{,}
+       \AttributeTok{y =} \StringTok{"Bill Length [mm]"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Manual Color Assignment and Statistical
+Trends}\label{manual-color-assignment-and-statistical-trends}
+
+We can intercept default color schemes using manual scale modifications,
+and overlay statistical models like linear regressions with confidence
+ribbons using \texttt{geom\_smooth()}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Assign custom aesthetic values to the stored plot object}
+\NormalTok{viz2 }\OtherTok{\textless{}{-}}\NormalTok{ viz }\SpecialCharTok{+} \FunctionTok{scale\_color\_manual}\NormalTok{(}\AttributeTok{values =} \FunctionTok{c}\NormalTok{(}\StringTok{"gray"}\NormalTok{, }\StringTok{"orange"}\NormalTok{, }\StringTok{"blue"}\NormalTok{))}
+
+\CommentTok{\# Display the customized plot}
+\NormalTok{viz2}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{gg-quickStart_files/gg-quickStart_files/figure-latex/custom_trends-1.pdf}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Overlay a standard linear model regression trendline across mapped groups}
+\NormalTok{viz2 }\SpecialCharTok{+} \FunctionTok{geom\_smooth}\NormalTok{(}\AttributeTok{method =}\NormalTok{ lm)}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{gg-quickStart_files/gg-quickStart_files/figure-latex/custom_trends-2.pdf}}
+
+\subsubsection{Color Palette Extensions and Fixed Graphic
+Arguments}\label{color-palette-extensions-and-fixed-graphic-arguments}
+
+Instead of choosing manual colors, you can use standardized scientific
+palettes like ColorBrewer. Alternatively, you can modify geometric
+sizing or shapes globally by passing constant arguments outside of the
+\texttt{aes()} function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Option A: Apply high{-}contrast ColorBrewer qualitative palettes}
+\NormalTok{viz }\SpecialCharTok{+} \FunctionTok{scale\_color\_brewer}\NormalTok{(}\AttributeTok{palette =} \StringTok{"Dark2"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{gg-quickStart_files/gg-quickStart_files/figure-latex/palettes_and_shapes-1.pdf}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Option B: Increase visual point sizing globally (non{-}data mapping)}
+\NormalTok{viz }\SpecialCharTok{+} \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{size =} \DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{gg-quickStart_files/gg-quickStart_files/figure-latex/palettes_and_shapes-2.pdf}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Option C: Modify visual point shape using standard R shape integers}
+\NormalTok{viz }\SpecialCharTok{+} \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{size =} \DecValTok{3}\NormalTok{, }\AttributeTok{shape =} \DecValTok{18}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{gg-quickStart_files/gg-quickStart_files/figure-latex/palettes_and_shapes-3.pdf}}
+
+\subsubsection{Dual Categorical Attribute Encoding (Shapes \&
+Colors)}\label{dual-categorical-attribute-encoding-shapes-colors}
+
+To make graphics accessible for color-blind readers, encode categorical
+elements using both shape and color simultaneously.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Mapping species factors to both color and shape visual properties}
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ penguins,}
+       \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ bill\_depth\_mm,}
+           \AttributeTok{y =}\NormalTok{ bill\_length\_mm,}
+           \AttributeTok{shape =}\NormalTok{ species,}
+           \AttributeTok{col =}\NormalTok{ species)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{size =} \DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{gg-quickStart_files/gg-quickStart_files/figure-latex/shape_mapping-1.pdf}}
+
+\subsubsection{Structural Theme Alterations \& Typography
+Settings}\label{structural-theme-alterations-typography-settings}
+
+Themes control non-data design properties. You can easily switch layout
+aesthetics or inject custom typography parameters.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Option A: Apply a minimalist classic theme layout}
+\NormalTok{viz }\SpecialCharTok{+} \FunctionTok{theme\_classic}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{gg-quickStart_files/gg-quickStart_files/figure-latex/themes_demo-1.pdf}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Option B: Force global typography modification using element\_text parameters}
+\NormalTok{viz }\SpecialCharTok{+} \FunctionTok{theme}\NormalTok{(}\AttributeTok{text =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{family =} \StringTok{"serif"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{gg-quickStart_files/gg-quickStart_files/figure-latex/themes_demo-2.pdf}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Option C: Chain structural layout themes and individual overrides sequentially}
+\NormalTok{viz }\SpecialCharTok{+}
+  \FunctionTok{theme\_gray}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{text =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{family =} \StringTok{"serif"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{gg-quickStart_files/gg-quickStart_files/figure-latex/themes_demo-3.pdf}}
+
+\subsection{3. Alternative Geometries: Boxplots, Violins, and
+Hybrids}\label{alternative-geometries-boxplots-violins-and-hybrids}
+
+To change how data distributions are represented, we only need to swap
+out the \texttt{geom\_*} function layer. The underlying dataset and
+mapped scales remain completely identical.
+
+🚨 \textbf{Important Technical \& Analytical Disclaimer:} 🚨
+
+The code examples below are designed to demonstrate \textbf{how} to
+technically swap geometry layers (\texttt{geom\_*}) within the
+programming syntax. They do not necessarily represent correct or
+meaningful data visualization choices.
+
+For instance, using a continuous line geometry (\texttt{geom\_line()})
+or a standard column layout (\texttt{geom\_col()}) on non-sequential,
+individual specimen records is analytically incorrect. A continuous line
+should only be used when the X-axis represents a truly continuous
+variable (such as time-series data or an ordered trend).
+
+\textbf{\emph{Always ensure your geometric representation aligns with
+the nature of your data attributes.}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Establish a reusable global base structure for categorical distribution checks}
+\NormalTok{baza }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ penguins,}
+               \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ bill\_depth\_mm,}
+                   \AttributeTok{y =}\NormalTok{ bill\_length\_mm,}
+                   \AttributeTok{col =}\NormalTok{ species,}
+                   \AttributeTok{fill =}\NormalTok{ species)) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Morphological Layout Variations"}\NormalTok{,}
+       \AttributeTok{x =} \StringTok{"Bill Depth [mm]"}\NormalTok{,}
+       \AttributeTok{y =} \StringTok{"Bill Length [mm]"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Comparing Geometric Output
+Formats}\label{comparing-geometric-output-formats}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Standard Boxplot representation of metrics}
+\NormalTok{baza }\SpecialCharTok{+} \FunctionTok{geom\_boxplot}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{gg-quickStart_files/gg-quickStart_files/figure-latex/geom_swaps-1.pdf}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Continuous Line representation}
+\NormalTok{baza }\SpecialCharTok{+} \FunctionTok{geom\_line}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{gg-quickStart_files/gg-quickStart_files/figure-latex/geom_swaps-2.pdf}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Geometric Column layout}
+\NormalTok{baza }\SpecialCharTok{+} \FunctionTok{geom\_col}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{gg-quickStart_files/gg-quickStart_files/figure-latex/geom_swaps-3.pdf}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Violin plot tracking kernel density probability distributions}
+\NormalTok{baza }\SpecialCharTok{+} \FunctionTok{geom\_violin}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{gg-quickStart_files/gg-quickStart_files/figure-latex/geom_swaps-4.pdf}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Inverting default Cartesian layout grids using coordinate flips}
+\NormalTok{baza }\SpecialCharTok{+} \FunctionTok{geom\_violin}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{coord\_flip}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{gg-quickStart_files/gg-quickStart_files/figure-latex/geom_swaps-5.pdf}}
+
+\subsubsection{Hybrid Geometry Composition (Layer
+Stacking)}\label{hybrid-geometry-composition-layer-stacking}
+
+We can stack multiple geometries to maximize data transparency. For
+example, overlaying a boxplot on top of a semi-transparent violin plot
+provides a comprehensive view of sample density and summary statistics.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Composite box{-}whisker and violin density layout}
+\FunctionTok{ggplot}\NormalTok{(penguins, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ species, }\AttributeTok{y =}\NormalTok{ bill\_depth\_mm)) }\SpecialCharTok{+}
+  \FunctionTok{theme\_bw}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{geom\_violin}\NormalTok{(}\AttributeTok{alpha =} \FloatTok{0.1}\NormalTok{, }\AttributeTok{size =} \FloatTok{0.75}\NormalTok{, }\AttributeTok{width =} \FloatTok{0.5}\NormalTok{, }\AttributeTok{fill =} \StringTok{"gray"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_boxplot}\NormalTok{(}\AttributeTok{alpha =} \DecValTok{0}\NormalTok{, }\AttributeTok{size =} \FloatTok{0.75}\NormalTok{, }\AttributeTok{width =} \FloatTok{0.1}\NormalTok{, }\AttributeTok{color =} \StringTok{"black"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{gg-quickStart_files/gg-quickStart_files/figure-latex/hybrid_plots-1.pdf}}
+
+\subsubsection{Intermediate Composite Plotting with Custom Jitter
+Overlays}\label{intermediate-composite-plotting-with-custom-jitter-overlays}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Colored scatter observations with matching structural boxplots stacked on top}
+\FunctionTok{ggplot}\NormalTok{(penguins, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ species, }\AttributeTok{y =}\NormalTok{ bill\_depth\_mm, }\AttributeTok{col =}\NormalTok{ species)) }\SpecialCharTok{+}
+  \FunctionTok{theme\_bw}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{alpha =} \FloatTok{0.5}\NormalTok{, }\AttributeTok{position =} \FunctionTok{position\_jitter}\NormalTok{(}\AttributeTok{width =} \FloatTok{0.1}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_boxplot}\NormalTok{(}\AttributeTok{alpha =} \DecValTok{0}\NormalTok{, }\AttributeTok{size =} \FloatTok{0.75}\NormalTok{, }\AttributeTok{width =} \FloatTok{0.25}\NormalTok{, }\AttributeTok{color =} \StringTok{"black"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{gg-quickStart_files/gg-quickStart_files/figure-latex/advanced_composition-1.pdf}}
+
+\subsection{4. One-Dimensional Layouts: Categorical Factor
+Sorting}\label{one-dimensional-layouts-categorical-factor-sorting}
+
+By default, coordinate systems plot categorical elements alphabetically.
+For professional charts, we should arrange categorical distributions by
+frequency using the \texttt{forcats} package.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Standard barplot calculating factor item counts automatically}
+\FunctionTok{ggplot}\NormalTok{(penguins, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ island)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_bar}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{gg-quickStart_files/gg-quickStart_files/figure-latex/standard_categorical-1.pdf}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Horizontal factor counts layout}
+\FunctionTok{ggplot}\NormalTok{(penguins, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =}\NormalTok{ species)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_bar}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{gg-quickStart_files/gg-quickStart_files/figure-latex/standard_categorical-2.pdf}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Adjusting visual transparency parameters globally}
+\FunctionTok{ggplot}\NormalTok{(penguins, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =}\NormalTok{ species)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{alpha =} \FloatTok{0.5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{gg-quickStart_files/gg-quickStart_files/figure-latex/standard_categorical-3.pdf}}
+
+\subsubsection{Factor Reordering
+Techniques}\label{factor-reordering-techniques}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Inverting alphabetical configurations with fct\_rev()}
+\FunctionTok{ggplot}\NormalTok{(penguins, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =} \FunctionTok{fct\_rev}\NormalTok{(species))) }\SpecialCharTok{+}
+  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{alpha =} \FloatTok{0.5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{gg-quickStart_files/gg-quickStart_files/figure-latex/sorted_factors-1.pdf}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Reordering category factors dynamically by sample frequency with fct\_infreq()}
+\FunctionTok{ggplot}\NormalTok{(penguins, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =} \FunctionTok{fct\_infreq}\NormalTok{(species))) }\SpecialCharTok{+}
+  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{width =} \FloatTok{0.5}\NormalTok{, }\AttributeTok{fill =} \StringTok{"darkslategray"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Sample Distributions Arranged by Frequency"}\NormalTok{,}
+       \AttributeTok{x =} \StringTok{"Observation Count"}\NormalTok{,}
+       \AttributeTok{y =} \StringTok{"Species Factor"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{gg-quickStart_files/gg-quickStart_files/figure-latex/sorted_factors-2.pdf}}
+
+\subsection{5. Advanced Panel Layouts: Faceting and Marginal
+Displays}\label{advanced-panel-layouts-faceting-and-marginal-displays}
+
+When single coordinates become cluttered, we can split plots into a
+matrix of smaller sub-panels using faceting, or append marginal plots to
+show individual distributions.
+
+\subsubsection{Split Axis Profiling via Matrix
+Facets}\label{split-axis-profiling-via-matrix-facets}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Clean missing values to ensure clear facet panels}
+\NormalTok{penguins\_clean }\OtherTok{\textless{}{-}} \FunctionTok{na.omit}\NormalTok{(penguins)}
+
+\CommentTok{\# Define our base scatter plot configuration}
+\NormalTok{fbase }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(penguins\_clean, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ flipper\_length\_mm, }\AttributeTok{y =}\NormalTok{ bill\_length\_mm)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{color =}\NormalTok{ species))}
+
+\NormalTok{fbase}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{gg-quickStart_files/gg-quickStart_files/figure-latex/faceting_demo-1.pdf}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Split into horizontal panel arrays segmented by sex}
+\NormalTok{fbase }\SpecialCharTok{+} \FunctionTok{facet\_grid}\NormalTok{(sex }\SpecialCharTok{\textasciitilde{}}\NormalTok{ .)}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{gg-quickStart_files/gg-quickStart_files/figure-latex/faceting_demo-2.pdf}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Split into vertical panel arrays segmented by sex}
+\NormalTok{fbase }\SpecialCharTok{+} \FunctionTok{facet\_grid}\NormalTok{(. }\SpecialCharTok{\textasciitilde{}}\NormalTok{ sex)}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{gg-quickStart_files/gg-quickStart_files/figure-latex/faceting_demo-3.pdf}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Multi{-}variable grid layout (Rows = Sex, Columns = Island) with dynamic labels}
+\NormalTok{fbase }\SpecialCharTok{+} \FunctionTok{facet\_grid}\NormalTok{(sex }\SpecialCharTok{\textasciitilde{}}\NormalTok{ island, }\AttributeTok{labeller =}\NormalTok{ label\_both)}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{gg-quickStart_files/gg-quickStart_files/figure-latex/faceting_demo-4.pdf}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Allow panel axis scales to vary independently across groups}
+\NormalTok{fbase }\SpecialCharTok{+} \FunctionTok{facet\_grid}\NormalTok{(sex }\SpecialCharTok{\textasciitilde{}}\NormalTok{ island, }\AttributeTok{scales =} \StringTok{"free"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{gg-quickStart_files/gg-quickStart_files/figure-latex/faceting_demo-5.pdf}}
+
+\subsubsection{Appending Marginal Coordinates via
+ggExtra}\label{appending-marginal-coordinates-via-ggextra}
+
+To display individual distributions alongside a joint scatter plot, save
+the base scatter plot configuration and process it using
+\texttt{ggMarginal()}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Save base scatter configuration object}
+\NormalTok{p }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(penguins, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ bill\_depth\_mm, }\AttributeTok{y =}\NormalTok{ bill\_length\_mm, }\AttributeTok{color =}\NormalTok{ species)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{legend.position =} \StringTok{"bottom"}\NormalTok{)}
+
+\CommentTok{\# Generate marginal histogram sub{-}elements}
+\FunctionTok{ggMarginal}\NormalTok{(p,}
+           \AttributeTok{type =} \StringTok{"histogram"}\NormalTok{, }
+           \AttributeTok{groupColour =} \ConstantTok{TRUE}\NormalTok{,}
+           \AttributeTok{groupFill =} \ConstantTok{TRUE}\NormalTok{) }
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{gg-quickStart_files/gg-quickStart_files/figure-latex/marginal_plots-1.pdf}}
+And with boxplot
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Generate marginal boxplot sub{-}elements}
+\FunctionTok{ggMarginal}\NormalTok{(p,}
+           \AttributeTok{type =} \StringTok{"boxplot"}\NormalTok{, }
+           \AttributeTok{groupColour =} \ConstantTok{TRUE}\NormalTok{,}
+           \AttributeTok{groupFill =} \ConstantTok{TRUE}\NormalTok{) }
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{gg-quickStart_files/gg-quickStart_files/figure-latex/unnamed-chunk-1-1.pdf}}
+This time density plot:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Plot 3: Scatter with elegant, narrow marginal DENSITY plots}
+\FunctionTok{ggMarginal}\NormalTok{(p,}
+           \AttributeTok{type =} \StringTok{"density"}\NormalTok{, }
+           \AttributeTok{groupColour =} \ConstantTok{TRUE}\NormalTok{,}
+           \AttributeTok{groupFill =} \ConstantTok{TRUE}\NormalTok{,}
+           \AttributeTok{size =} \DecValTok{7}\NormalTok{) }\CommentTok{\# Increases the main plot area, making marginal plots narrower}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{gg-quickStart_files/gg-quickStart_files/figure-latex/marginal_density-1.pdf}}
+
+\subsection{Things I Found Useful \&
+Interesting}\label{things-i-found-useful-interesting}
+
+\subsubsection{DataViz Theory \& Visual Communication Best
+Practices}\label{dataviz-theory-visual-communication-best-practices}
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://www.centerforengagedlearning.org/four-steps-to-better-data-visualizations/}{Four
+  Steps to Better Data Visualizations} -- Practical framework for
+  creating more impactful visualizations.
+\item
+  \href{https://medium.com/counterarts/simplicity-is-a-data-visualization-best-friend-4ad4fbec30da}{Simplify
+  charts (Medium)} -- An insightful read on why simplicity remains the
+  ultimate goal of chart design.
+\item
+  \href{https://gawarska-tywonek.medium.com/storytelling-a-simple-trick-to-grab-the-user-attention-8b89655e239c}{Storytelling
+  \& Design Chart (Medium)} -- Straightforward design techniques to
+  capture and retain reader attention.
+\item
+  \href{https://www.edwardtufte.com/bboard/q-and-a-fetch-msg?msg_id=00040Z}{Edward
+  Tufte: Chartjunk} -- A classic introduction to identifying and
+  eliminating visual clutter from charts.
+\item
+  \href{https://www.autodesk.com/research/publications/same-stats-different-graphs}{Autodesk:
+  Datasaurus Dozen} -- A brilliant demonstration of why visualizing data
+  is critical (shows datasets with identical summary statistics but
+  completely different distributions).
+\item
+  \href{https://datavizcatalogue.com/}{The Data Visualisation Catalogue}
+  -- A comprehensive reference library for choosing chart types.
+\end{itemize}
+
+\subsubsection{The Grammar of Graphics \& ggplot2
+Documentation}\label{the-grammar-of-graphics-ggplot2-documentation}
+
+\begin{itemize}
+\tightlist
+\item
+  \href{http://byrneslab.net/classes/biol607/readings/wickham_layered-grammar.pdf}{Hadley
+  Wickham: A Layered Grammar of Graphics (PDF)} -- The foundational
+  academic paper detailing the structural framework of \texttt{ggplot2}.
+\item
+  \href{https://ggplot2-book.org/}{Hadley Wickham: ggplot2. Elegant
+  Graphics for Data Analysis (3rd Ed, online)} -- The complete, free
+  online edition of the official handbook.
+\item
+  \href{https://clauswilke.com/dataviz/}{Claus O. Wilke: Fundamentals of
+  Data Visualization} -- An exceptional online textbook focusing on the
+  principles of accurate data presentation.
+\item
+  \href{http://www.sthda.com/english/wiki/be-awesome-in-ggplot2-a-practical-guide-to-be-highly-effective-r-software-and-data-visualization}{STHDA:
+  Be Awesome in ggplot2 (Practical Guide)} -- Excellent practical
+  reference guide for building highly polished charts.
+\item
+  \href{https://www.datanovia.com/en/blog/ggplot-examples-best-reference/}{Datanovia:
+  GGplot Examples Best Reference} -- Superb reference source covering
+  standard plots and extension packages.
+\item
+  \href{http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html}{Top
+  50 Ggplot2 Visualizations Master List} -- A repository of the 50 most
+  common chart types with reproducible R code.
+\item
+  \href{https://r-graph-gallery.com/ggplot2-package.html}{The R Graph
+  Gallery: ggplot2 section} -- An interactive showcase of inspiration
+  and ready-to-use templates.
+\end{itemize}
+
+\end{document}
